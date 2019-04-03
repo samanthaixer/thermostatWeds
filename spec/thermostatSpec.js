@@ -5,4 +5,9 @@ describe("Thermostat", function(){
 
   });
 
+  it("responds to an up function", function() {
+    thermostat = new Thermostat;
+    expect(thermostat.up()).not.toBe(undefined);
+  });
+
 });
