@@ -8,9 +8,6 @@ describe("Thermostat", function(){
   });
 
   describe("user wants to increase temperature", function() {
-    it("responds to up()", function() {
-      expect(thermostat.up()).not.toBe(undefined);
-    });
 
     it("increases the temperature by 1 degree", function() {
       thermostat.up(1);
@@ -49,5 +46,11 @@ describe("Thermostat", function(){
     thermostat.up(3);
     thermostat.reset();
     expect(thermostat.setting()).toEqual(thermostat.DEFAULT_TEMP);
+  });
+
+  it("returns low-usage for temperature under 18", function(){
+    thermostat.down(5);
+    expect(thermostat.setting()).toEqual(thermostat.DEFAULT_TEMP - 5);
+    expect(thermostat.energyUsage()).toEqual("low-usage");
   });
 });

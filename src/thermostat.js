@@ -7,34 +7,41 @@ function Thermostat() {
   this.powerSavingMode = true;
 }
 
-Thermostat.prototype.up = function(change) {
-  this._temperature += change;
-  if(this.powerSavingMode){
-    if(this._temperature > this.POWER_SAVING_MAX) return this._temperature = this.POWER_SAVING_MAX;
-    return this._temperature;
-  } else {
-    if (this._temperature > this.DEFAULT_MAXIMUM) {
-      return this._temperature = this.DEFAULT_MAXIMUM;
+Thermostat.prototype = {
+  constructor: Thermostat,
+
+  up: function(change) {
+    if(this.powerSavingMode){
+      this._temperature + change > this.POWER_SAVING_MAX
+        ? this._temperature = this.POWER_SAVING_MAX
+        : this._temperature += change;
     } else {
-      return this._temperature;
+      this._temperature + change > this.DEFAULT_MAXIMUM
+        ? this._temperature = this.DEFAULT_MAXIMUM
+        : this._temperature += change;
     }
+  },
+
+  down: function(change) {
+    this._temperature -= change;
+    if (this._temperature < this.DEFAULT_MINIMUM) return this._temperature = this.DEFAULT_MINIMUM;
+    return this._temperature;
+  },
+
+  setting: function() {
+    return this._temperature;
+  },
+
+  powerSavingOn: function () {
+    this.powerSavingMode = true;
+  },
+
+  powerSavingOff: function() {
+    this.powerSavingMode = false
+  },
+
+  reset: function() {
+    this._temperature = this.DEFAULT_TEMP;
   }
-}
 
-Thermostat.prototype.down = function(change) {
-  this._temperature -= change;
-  if (this._temperature < this.DEFAULT_MINIMUM) return this._temperature = this.DEFAULT_MINIMUM;
-  return this._temperature;
-}
-
-Thermostat.prototype.setting = function() {
-  return this._temperature;
-}
-
-Thermostat.prototype.powerSavingOn = function () {
-  this.powerSavingMode = true;
-}
-
-Thermostat.prototype.powerSavingOff = function() {
-  this.powerSavingMode = false
 }
