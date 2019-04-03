@@ -17,12 +17,18 @@ describe("Thermostat", function(){
     });
   });
 
-  it("decreases the temperature by 12 degrees", function() {
-    expect(thermostat.down(12)).toEqual(thermostat.DEFAULT_TEMP - 12);
+  it("decreases the temperature by 2 degrees", function() {
+    expect(thermostat.down(2)).toEqual(thermostat.DEFAULT_TEMP - 2);
   });
 
   it("limits the minimum temperature to 10 degrees", function() {
     thermostat.down(11);
-    expect(thermostat.setting()).toEqual(themostat.DEFAULT_MINIMUM);
+    expect(thermostat.setting()).toEqual(thermostat.DEFAULT_MINIMUM);
+  });
+
+  it("limits temperature to 25 degrees hen power saving is on", function() {
+    thermostat.powerSavingOn();
+    thermostat.up(10);
+    expect(thermostat.temperature).toEqual(25);
   });
 });
