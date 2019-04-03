@@ -4,7 +4,7 @@ describe("Thermostat", function(){
   });
 
   it("starts at default temperature", function(){
-    expect(thermostat.temperature).toEqual(thermostat.DEFAULT_TEMP);
+    expect(thermostat.setting()).toEqual(thermostat.DEFAULT_TEMP);
   });
 
   describe("user wants to increase temperature", function() {
@@ -26,9 +26,15 @@ describe("Thermostat", function(){
     expect(thermostat.setting()).toEqual(thermostat.DEFAULT_MINIMUM);
   });
 
-  it("limits temperature to 25 degrees hen power saving is on", function() {
+  it("limits temperature to 25 degrees when power saving is on", function() {
     thermostat.powerSavingOn();
     thermostat.up(10);
-    expect(thermostat.temperature).toEqual(25);
+    expect(thermostat.setting()).toEqual(25);
+  });
+
+  it("limites temperature to 32 when power saving is off", function(){
+    thermostat.powerSavingOff();
+    thermostat.up(15);
+    expect(thermostat.setting()).toEqual(32);
   });
 });
