@@ -37,11 +37,17 @@ Thermostat.prototype = {
   },
 
   powerSavingOff: function() {
-    this.powerSavingMode = false
+    this.powerSavingMode = false;
   },
 
   reset: function() {
     this._temperature = this.DEFAULT_TEMP;
+  },
+
+  energyUsage: function() {
+    if (this._temperature < 18) {
+      return "low-usage";
+    }
   }
 
 }

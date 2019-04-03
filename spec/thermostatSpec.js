@@ -53,4 +53,9 @@ describe("Thermostat", function(){
     expect(thermostat.setting()).toEqual(thermostat.DEFAULT_TEMP - 5);
     expect(thermostat.energyUsage()).toEqual("low-usage");
   });
+
+  it("returns medium-usage for temperatures of 18", function() {
+    thermostat.down(2);
+    expect(thermostat.energyUsage()).toEqual("medium-usage");
+  });
 });
