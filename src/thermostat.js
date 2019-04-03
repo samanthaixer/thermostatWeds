@@ -49,6 +49,8 @@ Thermostat.prototype = {
       return "low-usage";
     } else if (this._temperature >= 18 && this._temperature < 25) {
       return "medium-usage";
+    } else {
+      return "high-usage";
     }
   }
 
