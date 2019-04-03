@@ -13,7 +13,8 @@ describe("Thermostat", function(){
     });
 
     it("increases the temperature by 1 degree", function() {
-      expect(thermostat.up(1)).toEqual(thermostat.DEFAULT_TEMP + 1);
+      thermostat.up(1);
+      expect(thermostat.setting()).toEqual(thermostat.DEFAULT_TEMP + 1);
     });
   });
 
@@ -32,9 +33,21 @@ describe("Thermostat", function(){
     expect(thermostat.setting()).toEqual(25);
   });
 
-  it("limites temperature to 32 when power saving is off", function(){
+  it("increases temperature beyond power saving max when power saving is off", function() {
+    thermostat.powerSavingOff();
+    thermostat.up(10);
+    expect(thermostat.setting()).toEqual(thermostat.DEFAULT_TEMP + 10);
+  });
+
+  it("limits temperature to 32 when power saving is off", function(){
     thermostat.powerSavingOff();
     thermostat.up(15);
     expect(thermostat.setting()).toEqual(32);
+  });
+
+  it("resets temp to default", function() {
+    thermostat.up(3);
+    thermostat.reset();
+    expect(thermostat.setting()).toEqual(thermostat.DEFAULT_TEMP);
   });
 });
