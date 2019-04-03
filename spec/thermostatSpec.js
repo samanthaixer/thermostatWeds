@@ -58,4 +58,13 @@ describe("Thermostat", function(){
     thermostat.down(2);
     expect(thermostat.energyUsage()).toEqual("medium-usage");
   });
+
+  it("returns medium-usage for temperatures between 18 and 24", function(){
+    thermostat.down(1);
+    expect(thermostat.energyUsage()).toEqual("medium-usage");
+    thermostat.up(2);
+    expect(thermostat.energyUsage()).toEqual("medium-usage");
+    thermostat.up(4);
+    expect(thermostat.energyUsage()).not.toEqual("medium-usage");
+  });
 });
