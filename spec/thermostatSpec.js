@@ -3,16 +3,21 @@ describe("Thermostat", function(){
     thermostat = new Thermostat;
   });
 
-  it("starts at 20 degrees", function(){
-    expect(thermostat.temperature).toEqual(20);
+  it("starts at default temperature", function(){
+    expect(thermostat.temperature).toEqual(thermostat.DEFAULT_TEMP);
   });
 
-  it("responds to an up function", function() {
-    expect(thermostat.up()).not.toBe(undefined);
+  describe("user wants to increase temperature", function() {
+    it("responds to up()", function() {
+      expect(thermostat.up()).not.toBe(undefined);
+    });
+  
+    it("increases the temperature by 1 degree", function() {
+      expect(thermostat.up(1)).toEqual(thermostat.DEFAULT_TEMP + 1);
+    });
   });
 
-  it("increases the temperature by 1 degree", function() {
-    expect(thermostat.up(1)).toEqual(21);
-  })
-
+  it("decreases the temperature by 12 degrees", function() {
+    expect(thermostat.down(12)).toEqual(thermostat.DEFAULT_TEMP - 12);
+  });
 });
