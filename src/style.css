@@ -1,0 +1,18 @@
+body {
+  align-content: center;
+  font: script;
+  background-color: lightyellow;
+  color: black;
+}
+.low-usage {
+  color: green;
+  font: helvetica;
+}
+.medium-usage {
+  color: orange;
+  font: tahoma;
+}
+.high-usage {
+  color: red;
+  font: verdana;
+}

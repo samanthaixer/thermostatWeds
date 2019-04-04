@@ -1,7 +1,7 @@
 'use strict';
 
 $(document).ready(function() {
-var thermostat = new Thermostat();
+  var thermostat = new Thermostat();
   updateTemperature();
 
   $('#raiseTemp').on('click', function() {
@@ -16,7 +16,6 @@ var thermostat = new Thermostat();
 
   $('#powerSave').on('click', function() {
       thermostat.powerSavingOn();
-      updateTemperature();
   });
 
   $('#powerSpend').on('click', function() {
@@ -32,6 +31,7 @@ var thermostat = new Thermostat();
 
   function updateTemperature() {
     $('#currentTemperature').text("Current setting: " + thermostat.setting());
+    $('#currentTemperature').attr('class', thermostat.energyUsage());
   };
 
 });

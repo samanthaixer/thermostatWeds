@@ -91,4 +91,12 @@ describe("Thermostat", function(){
     }
     expect(thermostat.energyUsage()).toEqual("high-usage");
   });
+
+  // it("sets the temperature to the maximum when power-saving is turned on and temp is greater than max", function(){
+  //   for(i=0; i<12; i++){
+  //     thermostat.up();
+  //   }
+  //   thermostat.powerSavingOn();
+  //   expect(thermostat.setting()).toEqual(25);
+  // });
 });
