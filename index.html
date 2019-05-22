@@ -6,9 +6,18 @@
   <script src="src/index.js"></script>
   <link href="src/style.css" rel="stylesheet" type="text/css"/>
 
+  <script>
+      var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=London&APPID=79fddc0c8c730c36f36ca306e53d8d4a&units=metric";
+      $.get(apiUrl, function(weatherResponse) {
+        $("#weather").html("Current weather: " + weatherResponse.main.temp);
+      });
+    </script>
+
 </head>
 
 <h1>Thermostat</h1>
+
+<h2 id="weather"/>
 
 <h3 id="currentTemperature"/>
 

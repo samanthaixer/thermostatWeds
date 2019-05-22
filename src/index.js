@@ -1,7 +1,9 @@
 'use strict';
 
+var thermostat;
+
 $(document).ready(function() {
-  var thermostat = new Thermostat();
+  thermostat = new Thermostat();
   updateTemperature();
 
   $('#raiseTemp').on('click', function() {
